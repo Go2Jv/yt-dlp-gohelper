@@ -10,6 +10,11 @@
 yt-dlp-gohelper
 dist/
 .DS_Store
+.ghconfig/
+.ghstate/
+.xdg_config/
+.xdg_state/
+.xdg_cache/
 
 # Test binary, built with `go test -c`
 *.test
