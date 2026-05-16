@@ -8,6 +8,8 @@
 *.so
 *.dylib
 yt-dlp-gohelper
+dist/
+.DS_Store
 
 # Test binary, built with `go test -c`
 *.test
