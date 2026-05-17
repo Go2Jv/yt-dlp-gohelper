@@ -20,9 +20,7 @@ Latest Release (Releases page): https://github.com/Go2Jv/yt-dlp-gohelper/release
 
 如果这个项目对你有帮助，可以请我喝杯咖啡。谢谢 :)
 
-WeChat Pay：
-
-![WeChat Pay](donate/wechat.jpg)
+WeChat Pay：请在仓库中添加二维码图片 `donate/wechat.jpg` 后即可在 README 中展示。
 
 ## 中文
 
