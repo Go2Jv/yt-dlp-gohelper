@@ -7,16 +7,22 @@ A cross-platform interactive helper for `yt-dlp`.
 
 ## 下载 / Downloads
 
-Release: `v1.0`
+Latest Release (Releases page): https://github.com/Go2Jv/yt-dlp-gohelper/releases/latest
 
 | OS | Arch | Download |
 |---|---|---|
-| Windows | x64 | [yt-dlp-gohelper_v1.0_windows_amd64.zip](https://github.com/Go2Jv/yt-dlp-gohelper/releases/download/v1.0/yt-dlp-gohelper_v1.0_windows_amd64.zip) |
-| Linux | x64 | [yt-dlp-gohelper_v1.0_linux_amd64.zip](https://github.com/Go2Jv/yt-dlp-gohelper/releases/download/v1.0/yt-dlp-gohelper_v1.0_linux_amd64.zip) |
-| macOS | Intel (x64) | [yt-dlp-gohelper_v1.0_macos_amd64.zip](https://github.com/Go2Jv/yt-dlp-gohelper/releases/download/v1.0/yt-dlp-gohelper_v1.0_macos_amd64.zip) |
-| macOS | Apple Silicon (arm64) | [yt-dlp-gohelper_v1.0_macos_arm64.zip](https://github.com/Go2Jv/yt-dlp-gohelper/releases/download/v1.0/yt-dlp-gohelper_v1.0_macos_arm64.zip) |
+| Windows | x64 | https://github.com/Go2Jv/yt-dlp-gohelper/releases/latest |
+| Linux | x64 | https://github.com/Go2Jv/yt-dlp-gohelper/releases/latest |
+| macOS | Intel (x64) | https://github.com/Go2Jv/yt-dlp-gohelper/releases/latest |
+| macOS | Apple Silicon (arm64) | https://github.com/Go2Jv/yt-dlp-gohelper/releases/latest |
 
-Checksums: [sha256sums.txt](https://github.com/Go2Jv/yt-dlp-gohelper/releases/download/v1.0/sha256sums.txt)
+## 支持 / Support
+
+如果这个项目对你有帮助，可以请我喝杯咖啡。谢谢 :)
+
+WeChat Pay：
+
+![WeChat Pay](donate/wechat.jpg)
 
 ## 中文
 
@@ -25,6 +31,7 @@ Checksums: [sha256sums.txt](https://github.com/Go2Jv/yt-dlp-gohelper/releases/do
 ### 功能
 
 - 自动识别系统与语言（也会提示你选择语言）
+- 启动 Logo + 主菜单（下载视频 / 下载失败处理）
 - 检测 `yt-dlp` / `ffmpeg` 是否已安装且可运行
 - 依赖缺失时可选择自动安装
   - Windows：优先使用 `winget`
@@ -35,6 +42,10 @@ Checksums: [sha256sums.txt](https://github.com/Go2Jv/yt-dlp-gohelper/releases/do
   - 选择浏览器 Cookie（macOS 才会显示 Safari）
   - 选择分辨率预设
   - 选择保存目录与文件名模板
+- 下载失败处理（v2 稳定版）
+  - 下载失败后可选择重新下载
+  - 不重新下载时会自动删除 temp 并清理历史记录
+  - 用 history.json 记录失败任务，方便下次启动继续处理
 
 ### 重要提示（中国大陆）
 
@@ -69,6 +80,12 @@ go build -o yt-dlp-gohelper .
 
 On startup it detects your OS (Windows / Linux / macOS) and language (中文 / English / 日本語), checks whether `yt-dlp` and `ffmpeg` are available, and lets you either auto-install missing dependencies or exit and install them manually.
 
+### Features (v2 stable)
+
+- Startup logo + main menu (download / failed tasks)
+- Failed download handling: retry or delete temp automatically
+- Saves unfinished tasks to `history.json` for later retry
+
 ### Notes (Mainland China)
 
 - If you are in Mainland China and you download YouTube/overseas sites, use a system-wide VPN (global mode). Proxy-only modes may cause `yt-dlp` / `ffmpeg` to fail or become unstable.
@@ -94,6 +111,12 @@ go run .
 ## 日本語
 
 起動時に OS（Windows / Linux / macOS）と言語（中文 / English / 日本語）を判定し、`yt-dlp` と `ffmpeg` の有無を確認します。不足している場合は自動インストールするか、終了して手動インストールするかを選べます。
+
+### 機能（v2 安定版）
+
+- 起動ロゴ + メインメニュー（ダウンロード / 失敗タスク処理）
+- 失敗時に再試行、または temp を自動削除
+- 未完了タスクを `history.json` に保存して再試行可能
 
 ### 注意（中国本土）
 

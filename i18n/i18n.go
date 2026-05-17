@@ -51,6 +51,8 @@ func PromptLanguage(defaultLang Lang) Lang {
 	switch d {
 	case Zh:
 		def = "1"
+	case En:
+		def = "2"
 	case Ja:
 		def = "3"
 	default:
@@ -65,10 +67,12 @@ func PromptLanguage(defaultLang Lang) Lang {
 	switch strings.TrimSpace(choice) {
 	case "1":
 		return Zh
+	case "2":
+		return En
 	case "3":
 		return Ja
 	default:
-		return Zh
+		return d
 	}
 }
 

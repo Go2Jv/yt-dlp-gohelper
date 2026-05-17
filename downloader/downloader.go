@@ -11,7 +11,14 @@ import (
 	"github.com/Go2Jv/yt-dlp-gohelper/ui"
 )
 
-func RunInteractive(msg *i18n.Messages, goos string) error {
+type Request struct {
+	URL          string
+	Args         []string
+	OutputDir    string
+	OutputTmpl   string
+}
+
+func PromptRequest(msg *i18n.Messages, goos string) Request {
 	lang := msg.Lang()
 
 	switch lang {
@@ -75,6 +82,16 @@ func RunInteractive(msg *i18n.Messages, goos string) error {
 	args = append(args, "-o", outTemplate)
 	args = append(args, url)
 
+	return Request{
+		URL:        url,
+		Args:       args,
+		OutputDir:  savePath,
+		OutputTmpl: outTemplate,
+	}
+}
+
+func RunRequest(msg *i18n.Messages, req Request) (string, error) {
+	lang := msg.Lang()
 	switch lang {
 	case i18n.Zh:
 		fmt.Println("开始下载...")
@@ -84,7 +101,13 @@ func RunInteractive(msg *i18n.Messages, goos string) error {
 		fmt.Println("Downloading...")
 	}
 
-	return execx.RunInteractive("yt-dlp", args...)
+	return execx.RunInteractiveCapture(4*1024*1024, "yt-dlp", req.Args...)
+}
+
+func RunInteractive(msg *i18n.Messages, goos string) error {
+	req := PromptRequest(msg, goos)
+	_, err := RunRequest(msg, req)
+	return err
 }
 
 func promptBrowser(lang i18n.Lang, goos string) string {
