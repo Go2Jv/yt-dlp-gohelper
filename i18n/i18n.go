@@ -3,7 +3,6 @@ package i18n
 import (
 	"fmt"
 	"os"
-	"runtime"
 	"strings"
 
 	"github.com/Go2Jv/yt-dlp-gohelper/deps"
@@ -43,9 +42,6 @@ func DetectLanguage() Lang {
 
 func PromptLanguage(defaultLang Lang) Lang {
 	d := defaultLang
-	if runtime.GOOS == "windows" && os.Getenv("LANG") == "" && os.Getenv("LC_ALL") == "" {
-		d = En
-	}
 
 	var def string
 	switch d {
@@ -193,11 +189,11 @@ func (m *Messages) ManualInstallHint(goos string) string {
 	case "windows":
 		switch m.lang {
 		case Zh:
-			return "请先安装 yt-dlp 与 ffmpeg，并确保能在命令行直接运行 yt-dlp/ffmpeg (配置 PATH)"
+			return "请先安装 yt-dlp 与 ffmpeg，并确保能在命令行直接运行 yt-dlp/ffmpeg (配置 PATH)。如果刚安装完，请重新打开终端或重启本程序再试。"
 		case Ja:
-			return "yt-dlp と ffmpeg をインストールし、コマンドラインで yt-dlp/ffmpeg を実行できるよう PATH を設定してください"
+			return "yt-dlp と ffmpeg をインストールし、コマンドラインで yt-dlp/ffmpeg を実行できるよう PATH を設定してください。インストール直後はターミナル/本アプリの再起動が必要な場合があります。"
 		default:
-			return "Install yt-dlp and ffmpeg, and ensure yt-dlp/ffmpeg are runnable in CMD/PowerShell (PATH)"
+			return "Install yt-dlp and ffmpeg, and ensure yt-dlp/ffmpeg are runnable in CMD/PowerShell (PATH). If you just installed them, restart the terminal/app and retry."
 		}
 	default:
 		return ""

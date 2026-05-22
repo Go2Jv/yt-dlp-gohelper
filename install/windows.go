@@ -6,6 +6,7 @@ package install
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/Go2Jv/yt-dlp-gohelper/deps"
 	"github.com/Go2Jv/yt-dlp-gohelper/execx"
@@ -14,7 +15,9 @@ import (
 
 func Ensure(msg *i18n.Messages, state deps.State) error {
 	if _, err := execx.LookPath("winget"); err != nil {
-		return fmt.Errorf("%w: winget not found", ErrManualInstallRequired)
+		if _, err := execx.RunCombined(5*time.Second, "cmd", "/c", "winget", "--version"); err != nil {
+			return fmt.Errorf("%w: winget not found", ErrManualInstallRequired)
+		}
 	}
 
 	if state.MissingYtDlp() {
@@ -37,7 +40,7 @@ func Ensure(msg *i18n.Messages, state deps.State) error {
 		if post.MissingFfmpeg() {
 			m = append(m, "ffmpeg")
 		}
-		return fmt.Errorf("%w: installed but still not found in PATH (%s)", ErrManualInstallRequired, strings.Join(m, ", "))
+		return fmt.Errorf("%w: installed but still not found in PATH (%s). Please restart terminal/app and retry", ErrManualInstallRequired, strings.Join(m, ", "))
 	}
 	return nil
 }

@@ -78,6 +78,9 @@ func PromptRequest(msg *i18n.Messages, goos string) Request {
 	if cookieBrowser != "" {
 		args = append(args, "--cookies-from-browser", cookieBrowser)
 	}
+	if goos == "windows" {
+		args = append(args, "--windows-filenames")
+	}
 	args = append(args, "-f", format)
 	args = append(args, "-o", outTemplate)
 	args = append(args, url)

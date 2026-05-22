@@ -12,6 +12,7 @@ dist/
 .DS_Store
 .ghconfig/
 .ghstate/
+.ghcache/
 .xdg_config/
 .xdg_state/
 .xdg_cache/
